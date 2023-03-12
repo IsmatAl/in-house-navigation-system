@@ -1,0 +1,77 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog
+		http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-4.17.xsd">
+    <changeSet id="2" author="Ismat Alakbarov">
+        <createSequence sequenceName="seq_ms"/>
+        <createTable tableName="mobile_station" remarks="List of mobile stations">
+            <column name="id" type="number(13,0)" remarks="Mobile station unique identificator">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(512)" remarks="Mobile station name">
+                <constraints nullable="false"/>
+            </column>
+            <column name="model" type="varchar(50)" remarks="Mobile station model">
+                <constraints nullable="false"/>
+            </column>
+            <column name="status" type="varchar(50)" remarks="Mobile station status">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp" remarks="Timestamp of the creation">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_at" type="timestamp" remarks="Timestamp of the last triggered modification">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="1" author="Ismat Alakbarov">
+        <createSequence sequenceName="seq_msl"/>
+        <createTable tableName="mobile_station_location" remarks="List of last detected locations of mobile stations with coordinates">
+            <column name="id" type="number(13,0)" remarks="Mobile station location unique identificator">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="x" type="varchar(512)" remarks="Last detected longitude">
+            </column>
+            <column name="y" type="varchar(512)" remarks="Last detected latitude">
+            </column>
+            <column name="mobile_station_id" type="number(13,0)" remarks="Mobile station unique identificator">
+                <constraints foreignKeyName="fk_mobile_station_location_mobile_station" referencedTableName="mobile_station"
+                             referencedColumnNames="id"/>
+            </column>
+            <column name="created_at" type="timestamp" remarks="Timestamp of the creation">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_at" type="timestamp" remarks="Timestamp of the last triggered modification">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet id="3" author="Ismat Alakbarov">
+        <createSequence sequenceName="seq_bs"/>
+        <createTable tableName="base_station" remarks="List of bases stations">
+            <column name="id" type="number(13,0)" remarks="base unique identificator">
+                <constraints primaryKey="true"/>
+            </column>
+            <column name="name" type="varchar(512)" remarks="Mobile station name">
+                <constraints nullable="false"/>
+            </column>
+            <column name="x" type="float" remarks="Base station longitude">
+                <constraints unique="true"/>
+            </column>
+            <column name="y" type="float" remarks="Base station latitude">
+                <constraints unique="true"/>
+            </column>
+            <column name="detection_radius_in_meter" type="float" remarks="Base station radius in which mobile stations can be detected">
+                <constraints nullable="false"/>
+            </column>
+            <column name="created_at" type="timestamp" remarks="Timestamp of the creation">
+                <constraints nullable="false"/>
+            </column>
+            <column name="modified_at" type="timestamp" remarks="Timestamp of the last triggered modification">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

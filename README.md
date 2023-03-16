@@ -3,7 +3,7 @@ in-house-navigation-system
 
 ## Checkout Project
 ```
-git clone https:
+git clone https: https://github.com/IsmatAl/in-house-navigation-system.git
 ```
 
 ## Setup of IDE development environment
